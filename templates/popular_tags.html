@@ -1,0 +1,23 @@
+<head>
+	<title>Top 10 tags</title>
+</head>
+
+<li><a href='/'>Home</a></li>
+    <body>
+        <div class="title">
+            <h1>Here are the 10 most popular tags</h1>
+        </div>
+
+
+    {% if tags %}
+
+    	{% for tag in tags %}
+
+    		<li>{{tag[0]}}</li>
+    		<form method="post"  action="/popular_tags">
+        	<input type="hidden" value={{tag[0]}} name="tag" /> 
+        	<input type="submit" value="See Photos" />
+        	</form>
+        {% endfor %}
+
+    {% endif %}

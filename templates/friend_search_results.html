@@ -1,0 +1,34 @@
+
+
+<head>
+	<title>Here are the results</title>
+</head>
+
+<body>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+
+<li><a href='/friend_list'>See all your friends</a></li>
+<li><a href='/friend_search'>Go back</a></li>
+<li><a href='/'>Home</a></li>
+
+{% if friends %}
+        <ul>
+       {% for friend in friends %} 
+
+       <li>{{friend[0] + ' ' + friend[1]}}</li>
+       <form method="post" action="/friend_search_results">
+       <input type="hidden" value={{friend[2]}} name="friend_id" />
+       <input type="submit" value="Add Friend" />
+       </form>
+
+       {% endfor %}
+
+    
+
+        </ul>
+    {% endif %} 
+        
+
+</body>

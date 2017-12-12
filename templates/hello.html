@@ -1,0 +1,87 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+  <h4>Start uploading photos! Remember to create an album before you upload photos!</h4>
+{% endif %} 
+
+{% if users %}
+
+  <h4>Here are the top 10 users currently!</h4>
+
+  {% for user in users %}
+      <li>{{user[0] + ' ' + user[1]}}</li>
+
+  {% endfor %}
+
+{% endif %}
+
+<ul>
+<li><a href='/upload'>Upload a photo</a> </li> 
+<li><a href='/logout'>Logout</a></li>
+<li><a href='/pictures'>View all pictures</a></li>
+<li><a href='/'>Home</a></li>
+<p> Go to <a href='/profile'>profile?</a></p>
+</ul>
+
+{% if photos %}
+<h2>Here's your photos</h2>
+    <ul>
+    {% for photo in photos %}
+        <li>{{photo[2]}}<br>
+        <img style ='display:block; width: 500px;height: 500px;' src='data:image/png;base64, {{photo[0]}}'/></li>
+        <li>{{photo[3] + ' ' + photo[4]}}</li>
+        <br>
+
+        {% for comment in photo[7] %}
+            <li>{{comment[0] + ' --- Written by ' + comment[1] + ' '+ comment[2]}}</li>
+        {% endfor %}
+        <br>
+
+        <li>Tags</li>
+        {% for tag in photo[9] %}
+          <form method="post" action="/popular_tags">
+          <input type="hidden" value={{tag[0]}} name="tag">
+          <button type="submit" value="view_tag_pics">{{tag[0]}}</button>
+        </form>
+        {% endfor %}
+        <br>
+        <form method="post" action="/view_likes">
+        <input type="hidden" value={{photo[1]}} name="picture_id">
+        <button type="submit" value="view_likes">Likes: {{photo[8][0]}}</button>
+        </form>
+        <br>
+
+        <form method="post" action="/like">
+        <input type="hidden" value={{photo[5]}} name="user_id" /> 
+        <input type="hidden" value={{photo[1]}} name="picture_id" /> 
+        <button type="submit" value="like_this_photo">Like this photo</button> 
+        </form>
+      
+       
+        <form method="post" action="/pictures">
+        <label for="comment">Add your comment:</label>
+        <input type="text" name="comment" required='true' />
+        <input type="hidden" value={{photo[5]}} name="user_id" /> 
+        <input type="hidden" value={{photo[1]}} name="picture_id" /> 
+        <input type="submit" value="Comment" />
+        </form>
+
+        
+        <br />
+        <br>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if message is none %}
+  <p>You should <a href='/login'>login!</a></p>
+  
+{% endif %}
+
+
+

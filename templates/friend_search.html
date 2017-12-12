@@ -1,0 +1,27 @@
+<head> 
+    <title>Search for friends</title>
+</head>
+    <body>
+
+    {% if message %}
+    <h4>{{message}}</h4>
+    {% endif %}
+        <div class="title">
+            <h1>You can search for a person by entering his/her email address</h1>
+        </div>
+
+        <li><a href='/'>Home</a></li>
+        <li>Go to <a href='/profile'>profile?</a></li>
+        <br>
+        
+
+            <form method="post" action="/friend_search">
+            <label for="email">Enter email:</label>
+            <input type="text" name="email" required='true' /><br />
+            <input type="submit" value="Search" />
+            </form>
+
+    </body>
+
+
+    <head>

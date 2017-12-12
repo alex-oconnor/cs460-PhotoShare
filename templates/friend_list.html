@@ -1,0 +1,28 @@
+<head>
+	<title>Here are the results</title>
+</head>
+
+<body>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+
+<li><a href='/friend_search'>Search for new friends</a></li>
+<li><a href='/profile'>Profile</a></li>
+<li><a href='/'>Home</a></li>
+
+{% if friends %}
+        <ul>
+       {% for friend in friends %} 
+
+       <li>{{friend[0] + ' ' + friend[1]}}</li>
+       
+       {% endfor %}
+
+    
+
+        </ul>
+    {% endif %} 
+
+
+</body>

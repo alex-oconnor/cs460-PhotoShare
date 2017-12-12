@@ -1,0 +1,41 @@
+<head>
+	<title>Here are your recommended pictures</title>
+</head>
+
+
+{% if message %}
+  <h4>{{message}}</h4>
+{% endif %}
+
+<li><a href='/profile'>Profile</a></li>
+<li><a href='/'>Home</a></li>
+<br>
+
+
+{% if photos %}
+
+	{% for photo in photos %}
+
+		<li>{{photo[2]}}<br>
+        <img style ='display:block; width: 500px;height: 500px;' src='data:image/png;base64, {{photo[0]}}'/></li>
+        <li>{{photo[3] + ' ' + photo[4]}}</li>
+        <br>
+        <form method="post" action="/like">
+        <input type="hidden" value={{photo[4]}} name="user_id" /> 
+        <input type="hidden" value={{photo[1]}} name="picture_id" /> 
+        <button type="submit" value="like_this_photo">Like this photo</button> 
+        </form>
+        <br>
+
+        <form method="post" action="/pictures">
+        <label for="comment">Add your comment:</label>
+        <input type="text" name="comment" required='true' />
+        <input type="hidden" value={{photo[4]}} name="user_id" /> 
+        <input type="hidden" value={{photo[1]}} name="picture_id" /> 
+        <input type="submit" value="Comment" />
+        </form>
+        <br>
+        
+
+    {% endfor %}
+{% endif %}

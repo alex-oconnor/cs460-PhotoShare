@@ -1,0 +1,35 @@
+<head> 
+    <title>Search for pictures by tags!</title>
+</head>
+    <body>
+        <div class="title">
+            <h1>You can search by one or more tag; each tag is a single word and all lowercase. Separate tags by 1 space</h1>
+        </div>
+
+        <li><a href='/'>Home</a></li>
+        <li>Go to <a href='/profile'>profile?</a></li>
+        <li>See the <a href='/popular_tags'>Top Ten</a> tags</li>
+        <br>
+        
+
+            <form method="post" action="/tag_search">
+            <label for="tags">Enter tag(s):</label>
+            <input type="text" name="tags" required='true' /><br />
+            <input type="submit" value="Search" />
+            </form>
+
+    </body>
+
+    {% if photos %}
+        <ul>
+        {% for photo in photos %}
+            <li>{{photo[2]}}<br>
+            <img style ='display:block; width: 500px;height: 500px;' src='data:image/png;base64, {{photo[0]}}'/></li>
+            <li>{{photo[3] + ' ' + photo[4]}}</li>
+            <li>{{'Tag: ' +photo[1]}}</li>
+            <br>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+<head>

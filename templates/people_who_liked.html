@@ -1,0 +1,26 @@
+<head>
+	<title>People who liked the photo</title>
+</head>
+
+
+{% if message %}
+  <h4>{{message}}</h4>
+{% endif %}
+
+
+{% if names %}
+	{% for name in names %}
+
+		<li>{{name[0] + ' ' + name[1]}}</li>
+
+	{% endfor %}
+
+{% endif %}
+
+
+<br>
+<br>
+
+<li><a href='/pictures'>See all pictures</a></li>
+<li><a href='/photo_stream'>See your pictures</a></li>
+<li><a href='/'>Home</a></li>

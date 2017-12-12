@@ -1,0 +1,28 @@
+<head>
+	<title>Here are all your photos!</title>
+</head>
+	<body>
+		<div class="title">
+            <h1>My Photos</h1>
+        </div>
+
+
+<li><a href='/profile'>Profile</a></li>
+<li><a href='/'>Home</a></li>
+
+{% if photos %}
+<h2>Here's your photos</h2>
+    <ul>
+    {% for photo in photos %}
+        <li>{{photo[2]}}<br>
+        <img style ='display:block; width: 500px;height: 500px;' src='data:image/png;base64, {{photo[0]}}'/></li>
+        <form method="post"  action="/photo_stream">
+        <input type="hidden" value={{photo[1]}} name="picture_id" /> 
+        <input type="submit" value="Delete Photo" />
+        </form>
+        <br>
+        <br>
+    {% endfor %}
+
+{% endif %}
+

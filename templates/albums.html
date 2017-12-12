@@ -1,0 +1,43 @@
+<head>
+	<title>Here are all your albums</title>
+</head>
+
+
+{% if message %}
+  <h4>{{message}}</h4>
+{% endif %}
+
+<li><a href='/create_album'>Create an album</a></li>
+<li><a href='/'>Home</a></li>
+	
+	<body>
+		<div class="title">
+            <h1>My Albums</h1>
+        </div>
+
+
+
+    {% if albums %}
+
+    	{% for album in albums %}
+
+    		<li>{{album[0]}}</li>
+    		<li>Total photos in album: {{album[1]}}</li>
+
+
+    		<form method="post" action="/see_photos">
+        	<input type="hidden" value={{album[0]}} name="name" /> 
+        	<button type="submit" value="see_photos_in_album">See photos</button> 
+        	</form>
+       
+        	<form method="post" action="/delete_album">
+        	<input type="hidden" value={{album[2]}} name="album_id" /> 
+        	<input type="submit" value="Delete Album (WARNING: Will delete all photos in album)" />
+        	</form>
+
+
+        {% endfor %}
+
+    {% endif %}
+
+   </body>

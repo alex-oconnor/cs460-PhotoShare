@@ -1,0 +1,29 @@
+<head>
+	<title>Welcome to your Profile!</title>
+</head>
+	<body>
+		<div class="title">
+            <h1>Welcome to your Profile!</h1>
+        </div>
+	<ul>
+	<li><a href='/photo_stream'>View your photos</a></li>
+	<li><a href='/upload'>Upload a photo</a> </li> 
+	<li><a href='/albums'>View your albums</a></li>
+	<li><a href='/create_album'>Create an album</a></li>
+	<li><a href='/friend_search'>Search for friends</a></li>
+	<li><a href='/friend_list'>View friends</a></li>
+	<li><a href='/pictures'>View all photos</a></li>
+	<li><a href='/tag_search'>Search for photos by tags!</a></li>
+	<li><a href='/popular_tags'>View the most popular tags</a></li>
+	<li><a href='/'>Home</a></li>
+	<li><a href='/recommended_pics'>See pictures recommended for you!</a></li>
+
+	<form method="post" action="/tag_recommendation">
+    <label for="tags">Enter some tags you had in mind:</label>
+    <input type="text" name="tags" required='true' />
+    <input type="submit" value="See recommended tags" />
+    </form>
+
+
+	</ul>
+	</body>
